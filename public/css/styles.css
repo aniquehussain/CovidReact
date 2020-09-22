@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background-color: #f4f4f4;
-  background-image: url('978.jpg');
+  background-image: url('wall.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -9,6 +16,22 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+}
+main{
+  min-height: calc(100vh - 117.64px - 208px)
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Arvo', serif;
+
+}
+.myProfile{
+  width: 50%;
+}
+.profile-text{
+text-align: left;
+}
+.profile-head,.profession{
+  text-align: center;
 }
 *:focus {
   outline: 0;
@@ -47,6 +70,11 @@ nav {
   padding-bottom: 2%;
   padding-right: 1%;
 }
+.center{
+  text-align: center;
+  margin: auto;
+  margin-bottom: 5%;
+}
 .homebtn{
   color: #fff;
 }
@@ -54,9 +82,23 @@ nav {
   color: #fff;
   text-decoration: none;
 }
+.dark-stats h4{
+color: rgb(215, 218, 95)
+}
 .stats{
   background-color: #fff;
+  opacity: 85%;
+  text-align: center;
+  font-weight: normal;
+  padding: 5%;
+}
+.card p{
+  font-weight: bold;
+}
+.dark-stats{
+  background-color: #111;
   opacity: 90%;
+  color: rgb(255, 255, 255);
   text-align: center;
   font-weight: bold;
   padding: 5%;
@@ -69,66 +111,125 @@ nav {
 .heading {
   font-family: 'Chelsea Market', cursive;
   text-align: center;
-  padding-bottom: 6rem;
+  padding-bottom: 5rem;
   padding-top: 2rem;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 .ico {
   width: 20%;
   opacity: 100%;
+  margin: 2%;
 }
 
 .butn {
   margin: 1% 40% 1% 40%;
 }
 
-#features {
-  padding-top: 12%;
-  padding-bottom: 12%;
+.prevention {
+  padding-top: 8%;
+  padding-bottom: 8%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  font-weight: bold;
+}
+.prevention h3{
+  font-weight: bold;
+  padding: 0;
+  font-size: 25px;
+}
+.prevention p{
+  color: #8f8f8f;
+  margin-bottom: 5%;
+}
+.prevention h2{
+  font-weight: bold;
+  margin-bottom: 5%;
+  margin-top: -5%;
+}
+.footer-icon{
+  width: 2%;
+  margin: 2%;
+}
+.footer-img-wrap ul li{
+  display: inline;
   text-align: center;
   position: relative;
-  background-color: #FFFEFC;
-  z-index: 1;
-  margin-top: 40%;
-  opacity: 87%;
-  margin-bottom: 8%;
+  margin: 0.5%;
 }
-
-.features-desc {
-  font-weight: bold;
-  margin: 0 5% 0;
-  color: #212529;
+.footer {
+  text-align: center;
+  width: 100%;
+  position: absolute;
 }
-
-.features-para {
+.ico{
+  transition: all 0.2s ease-in-out;
+}
+.icon {
+  width: 25px;
+  transition: all 0.2s ease-in-out;
+}
+.icon:hover,
+.git:hover,.ico:hover {
+  transform: scale(1.5);
+}
+.git {
+  width: 30px;
+  transition: all 0.2s ease-in-out;
+}
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+.bottom-container {
+  background-color: #111;
+  opacity: 80%;
+  padding: 50px 0 10px;
+}
+.foot {
+  color: #fff;
+  padding: 20px 0;
+  font-size: 0.80rem;
+}
+.footer a:hover {
+  color: #111;
+}
+.footer-link {
+  padding-left: 1%;
+  padding-right: 1%;
+}
+.footer-img-wrap{
+  margin-left: 10%;
+}
+.desc-para p{
   color: #8f8f8f;
-  padding: 0.5rem;
 }
-
-#footer {
+.stats-form p{
+  font-weight: bold;
+}
+.footerNow {
   text-align: center;
   margin: auto;
   padding-top: 2%;
+  padding-bottom: 5%;
   background-color: #212529;
   opacity: 90%;
+  
 }
 
 /* Social icons */
 /* Copyright */
 .cpy {
   padding-top: 1%;
-  padding-bottom: 3%;
+  padding-bottom: 0%;
   color: #fff;
   font-size: 12px;
 }
 
 /* My Signature */
 .myname {
-  position: relative;
-  bottom: 10px;
   color: #fff;
-  padding-bottom: 3%;
+  padding-bottom: 0%;
   font-size: 12px;
 }
 
@@ -147,6 +248,23 @@ a {
 .df {
   display: none;
 }
+.imgCol{
+  margin-bottom: 5%;
+}
+.covidImage{
+  width: 200px;
+}
+.cardStyle{
+  padding-top: 10%;
+        min-height: 165px;
+        min-width: 150px;
+        margin: 0%
+}
+#footer {
+  padding-top: 0%;
+  padding-bottom: 0%;
+  margin-top: 5%;
+}
 
 @media only screen and (min-width: 768px) {
   body {
@@ -156,26 +274,51 @@ a {
     overflow-x: hidden;
   }
 
+  .cardStyle{
+  padding: 10% 5% 5% 5%;
+  min-height: 165px;
+  min-width: 150px;
+        
+}
+.myProfile{
+  width: 60%;
+}
+.profile-text{
+text-align: left;
+}
+.profile-head{
+  text-align: left;
+}
+.profession{
+  text-align: left;
+}
   #features {
     margin-top: 10%;
   }
 
   .heading {
-    font-size: 6rem;
+    font-size: 5rem;
   }
-
+  .covidImage{
+    width: 250px;
+  }
   .frm {
     position: relative;
     left: 60%;
     width: 100%;
   }
+  /* .imgCol{
+    margin-bottom: 0;
+  } */
 
   .butn {
     margin: 1% 25% 1%;
   }
 
   #footer {
-    padding-top: 1%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin-top: 0%;
   }
 
   /* Social icons */
@@ -191,7 +334,7 @@ a {
     position: relative;
     bottom: 10px;
     color: #fff;
-    padding-bottom: 7%;
+    padding-bottom: 1%;
   }
 }
 
@@ -202,17 +345,44 @@ a {
     padding: 0px;
     overflow-x: hidden;
   }
-
+  .cardStyle{
+    padding-top: 20%;
+          min-height: 165px;
+          min-width: 150px;
+          margin: 0%
+  }
+  .covidImage{
+    width: 300px;
+  }
+  .profession{
+    text-align: left;
+  }
+  .heading {
+    font-size: 3rem;
+  }
   .butn {
     margin: 1% 40%;
+  }
+  .imgCol{
+    margin-bottom: 0;
   }
 
   .heading {
     font-size: 6rem;
   }
-
+  .myProfile{
+    width: 70%;
+    padding-bottom: 0;
+  }
+  .profile-text{
+  text-align: left;
+  }
+  .profile-head{
+    text-align: left;
+  }
   #footer {
-    padding-top: 0.1%;
+    padding-top: 0%;
+    padding-bottom: 0%;
     margin-top: 5%;
   }
 
@@ -230,7 +400,7 @@ a {
     position: relative;
     bottom: 10px;
     color: #fff;
-    padding-bottom: 2%;
+    padding-bottom: 1%;
     font-size: 1rem;
   }
 }

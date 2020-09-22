@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 function Navbar() {
+
+    const [navColor, setNavColor] = useState("");
     const underline = {
         textDecoration: 'none'
     }
-    const [navColor, setNavColor] = useState("");
-
 
     function handleClick(event) {
         setScrollState("");
@@ -19,6 +19,7 @@ function Navbar() {
 
     useEffect(() => {
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         listener = document.addEventListener("scroll", e => {
             var scrolled = document.scrollingElement.scrollTop
             if (scrolled >= 120) {
@@ -43,9 +44,10 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav ml-auto">
 
-                {/* <Link className='nav-item' to='/' style={underline}><li className="nav-link" >Home</li></Link> */}
-                {/* <Link className='nav-item' to='/statistics' style={underline}><li className="nav-link" >Statistics</li></Link> */}
-                {/* <Link className='nav-item' to='/about' style={underline}><li className="nav-link" >About</li></Link> */}
+                <Link className='nav-item' to='/' style={underline}><li className="nav-link" >Home</li></Link>
+                <Link className='nav-item' to='/statistics' style={underline}><li className="nav-link" >Statistics</li></Link>
+                {/* <Link className='nav-item' to='/timeline' style={underline}><li className="nav-link" >Timeline</li></Link> */}
+                <Link className='nav-item' to='/about' style={underline}><li className="nav-link" >Developer</li></Link>
 
             </ul>
         </div>

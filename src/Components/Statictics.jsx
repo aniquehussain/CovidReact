@@ -1,10 +1,19 @@
 import React from 'react';
+import CountryWise from './props/CountryWise';
+import Header from './props/Header';
 
-function Statistics(params) {
+
+function Statistics() {
     return (
         <div>
-
+            <Header />
+            <main>
+                <CountryWise />
+            </main>
         </div>
+
+
+
     )
 }
 
