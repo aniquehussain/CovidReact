@@ -7,7 +7,6 @@ import Home from './Components/Home';
 import Statistics from './Components/Statictics';
 import About from './Components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TimeLine from './Components/TimeLine';
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/statistics" component={Statistics} />
           <Route path="/about" component={About} />
-          <Route path="/timeline" component={TimeLine} />
 
         </Switch>
         <Footer />

@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import Spinner from './Spinner';
+import TimeLineTable from './TimeLineTable';
 
 
 const CountryWise = () => {
@@ -51,6 +52,36 @@ const CountryWise = () => {
             });
 
     }, [country]);
+
+
+    //TimeLineTable
+    const [array, setArray] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+
+    useEffect(() => {
+        setLoading(true);
+        const getTimeline = async () => {
+            const myData = await axios({
+                "method": "GET",
+                "url": "https://covid-193.p.rapidapi.com/statistics",
+                "headers": {
+                    "content-type": "application/octet-stream",
+                    "x-rapidapi-host": "covid-193.p.rapidapi.com",
+                    "x-rapidapi-key": "1fc1a156b8mshb01d5ed20621a31p1602c3jsnab438f067e3a",
+                    "useQueryString": true
+                }
+            });
+
+            let dataArray = myData.data.response;
+            setArray(dataArray);
+            setLoading(false);
+
+        };
+
+        getTimeline();
+
+    }, [])
 
 
     const handleChange = (e) => {
@@ -337,10 +368,13 @@ const CountryWise = () => {
                             <p>Total Deaths</p>
                         </Col>
                     </Row>
+                    <br /><br /><br />
+
+                    <h5 style={{ fontWeight: 'bold' }}>Countries</h5><br />
+                    {loading ? <Spinner /> : <TimeLineTable array={array} />}
 
                 </Fragment>}
             </Container>
-
         </div >
     )
 }
