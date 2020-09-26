@@ -1,92 +1,36 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import axios from 'axios';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import React, { Fragment, useEffect, useContext } from 'react'
+import { Container, Row, Col } from 'react-bootstrap';
 import Spinner from './Spinner';
 import TimeLineTable from './TimeLineTable';
+import CovidContext from '../../context/covid/covidContext'
 
 
 const CountryWise = () => {
 
-    const [totalCases, setTotalCases] = useState(-1)
-    const [newCases, setNewCases] = useState(0)
-    const [recoveredCases, setRecoveredCases] = useState(0)
-    const [deathCases, setDeathCases] = useState(0)
-
-
-    const [country, setCountry] = useState("Choose...");
+    const covidContext = useContext(CovidContext);
+    const { country, loading, deathCases, newCases, recoveredCases, totalCases } = covidContext;
 
     useEffect(() => {
-
-        const getData = async () => {
-            const myData = await axios.get('https://ipapi.co/json/');
-
-            setCountry(myData.data.country_name);
-        }
-        getData();
-
+        covidContext.getData();
     }, []);
 
     useEffect(() => {
-        axios({
-            method: 'GET',
-            url: 'https://covid-193.p.rapidapi.com/statistics',
-            headers: {
-                'x-rapidapi-host': 'covid-193.p.rapidapi.com',
-                'x-rapidapi-key': '1fc1a156b8mshb01d5ed20621a31p1602c3jsnab438f067e3a'
-            }
-        })
-            .then(function (res) {
 
-                const gotData = res.data.response;
-                for (let i = 0; i < gotData.length; i++) {
-
-                    if (gotData[i].country === country) {
-                        setTotalCases(gotData[i].cases.total);
-                        setNewCases(gotData[i].cases.new);
-                        setRecoveredCases(gotData[i].cases.recovered);
-                        setDeathCases(gotData[i].deaths.total);
-
-                    }
-
-                }
-            });
+        covidContext.getCountryWiseData();
 
     }, [country]);
 
 
     //TimeLineTable
-    const [array, setArray] = useState([]);
-    const [loading, setLoading] = useState(false);
-
 
     useEffect(() => {
-        setLoading(true);
-        const getTimeline = async () => {
-            const myData = await axios({
-                "method": "GET",
-                "url": "https://covid-193.p.rapidapi.com/statistics",
-                "headers": {
-                    "content-type": "application/octet-stream",
-                    "x-rapidapi-host": "covid-193.p.rapidapi.com",
-                    "x-rapidapi-key": "1fc1a156b8mshb01d5ed20621a31p1602c3jsnab438f067e3a",
-                    "useQueryString": true
-                }
-            });
 
-            let dataArray = myData.data.response;
-            setArray(dataArray);
-            setLoading(false);
-
-        };
-
-        getTimeline();
+        covidContext.getTimeline();
 
     }, [])
 
 
-    const handleChange = (e) => {
-        setCountry(e.target.value)
-    }
+
     return (
         <div>
 
@@ -94,7 +38,7 @@ const CountryWise = () => {
 
                 <div className="col-md-5 center">
                     <label className="lead" htmlFor="validationServer04">Select Country</label>
-                    <select className="custom-select" id="validationServer04" required name="slct" value={country} onChange={handleChange}>
+                    <select className="custom-select" id="validationServer04" required name="slct" value={country} onChange={covidContext.handleChange}>
                         <option >{country}</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
@@ -344,7 +288,7 @@ const CountryWise = () => {
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
                 </div>
-                {totalCases === -1 ? <Spinner /> : <Fragment>
+                {loading ? <Spinner /> : <Fragment>
                     <h5 ><span style={{ fontWeight: 'bold' }}>{country}</span></h5>
 
                     <Row className='stats-form'>
@@ -371,7 +315,7 @@ const CountryWise = () => {
                     <br /><br /><br />
 
                     <h5 style={{ fontWeight: 'bold' }}>Countries</h5><br />
-                    {loading ? <Spinner /> : <TimeLineTable array={array} />}
+                    {loading ? <Spinner /> : <TimeLineTable array={covidContext.countryList} />}
 
                 </Fragment>}
             </Container>

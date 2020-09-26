@@ -7,20 +7,24 @@ import Home from './Components/Home';
 import Statistics from './Components/Statictics';
 import About from './Components/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CovidState from './context/covid/CovidState';
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/statistics" component={Statistics} />
-          <Route path="/about" component={About} />
+      <CovidState>
 
-        </Switch>
-        <Footer />
-      </div>
+        <div>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/statistics" component={Statistics} />
+            <Route path="/about" component={About} />
+
+          </Switch>
+          <Footer />
+        </div>
+      </CovidState>
     </Router>
   );
 }
